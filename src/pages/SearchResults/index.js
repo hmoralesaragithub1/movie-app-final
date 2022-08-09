@@ -12,7 +12,13 @@ const SearchResults = () => {
 
   async function getSearchResults() {
     const data = await Services.searchByText(searchText);
-    setMovies(data.Search);
+    const alterData = data.Search.map((item) => {
+      return {
+        ...item,
+        Price: (Math.random() * 10).toFixed(2),
+      };
+    });
+    setMovies(alterData);
   }
 
   useEffect(() => {
